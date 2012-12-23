@@ -7,8 +7,8 @@ from django.contrib.admin import site
 
 site.register(Requester)
 site.register(SatisfactionLevel)
-site.register(DisSatisfactionType)
-site.register(Area)
+site.register(DissatisfactionType)
+site.register(Topic)
 site.register(Level)
 site.register(Request)
 site.register(Response)

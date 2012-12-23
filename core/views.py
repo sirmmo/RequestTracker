@@ -3,10 +3,13 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.views.generic.edit import FormView
-
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
 import json
-
 from core.models import *
+
+def index (request):
+	return render_to_response('index.html', {'know_user':False})
 
 class RequestForm(ModelForm):
 	class Meta:
@@ -16,9 +19,27 @@ class RequestForm(ModelForm):
 class ResponseForm(ModelForm):
 	class Meta:
 		model = Response
+		
 @login_required
 def profile(request):
 	pass
+
+class RequestListView(ListView):
+    model = Request
+    template_name = "requests.html"
+    
+class RequestCreate(CreateView):
+	model = Request
+	exclude = ('requester')
+	template_name = "form.html"
+
+class RequestUpdate(UpdateView):
+	model = Request
+	exclude = ('requester')
+	template_name = "form.html"
+
+class RequestDelete(DeleteView):
+    model = Request
 
 class RequestView(FormView):
 	form_class = RequestForm
@@ -55,6 +76,3 @@ def req_stats(request):
 		r.append(req_)
 
 	return HttpResponse(json.dumps(r))
-
-def index (request):
-	return render_to_response('index.html')

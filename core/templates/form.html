@@ -1,4 +1,7 @@
-<form action="{{url}}" method="post">{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Submit" />
-</form>
+{% extends "base.html" %}
+{% block body %}s
+		<form class="centered" action="{{url}}" method="post">{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Submit" />
+		</form>
+		{% endblock %}

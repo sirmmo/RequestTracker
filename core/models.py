@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 class Requester(models.Model):
 	user = models.ForeignKey(User)
 	name = models.CharField(max_length=250)
@@ -11,44 +12,45 @@ class Requester(models.Model):
 
 class SatisfactionLevel(models.Model):
 	level = models.IntegerField()
+	
 	def __str__(self):
 		return str(self.level)
 
-class DisSatisfactionType(models.Model):
+class DissatisfactionType(models.Model):
 	name = models.TextField()
+	
 	def __str__(self):
 		return self.name
 
-class Area(models.Model):
+class Topic(models.Model):
 	name = models.TextField()
-        def __str__(self):
-                return self.name
+	
+	def __str__(self):
+		return self.name
 
 class Level(models.Model):
-        name = models.TextField()
-        def __str__(self):
-                return self.name
+	name = models.TextField()
+	
+	def __str__(self):
+		return self.name
 
 class Request(models.Model):
 	requester = models.ForeignKey(Requester)
 	question = models.TextField()
 	submission_date = models.DateField()
-	area = models.ForeignKey(Area)
+	topic = models.ForeignKey(Topic)
 	level = models.ForeignKey(Level)
 	
 	def __str__(self):
-		return "%s - %s "%(self.requester, self.area)
+		return "%s - %s" % (self.requester, self.topic)
 	
 class Response(models.Model):
 	request = models.OneToOneField(Request, related_name="response")
-	answer_date = models.DateField(blank=True, null=True)
-	satisfaction = models.ForeignKey(SatisfactionLevel)
-	dissatisfaction_reason = models.ManyToManyField(DisSatisfactionType)
-	legal = models.BooleanField()
+	response_date = models.DateField(blank=True, null=True)
+	satisfaction_level = models.ForeignKey(SatisfactionLevel)
+	dissatisfaction_reason = models.ManyToManyField(DissatisfactionType)
+	legal_pursue = models.BooleanField()
 	legal_support = models.BooleanField()
 
 	def __str__(self):
 		return "%s => %s" % (self.request, self.satisfaction)
-
-	def arrayize(self):
-		return [self.requester.name, self.requester.surname, self.requester.organization, self.question, self.submission_date, self.answer_date, self.satisfaction, self.area, self.level, self.legal, self.legal_support]	
