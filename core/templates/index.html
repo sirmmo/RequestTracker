@@ -1,1 +1,36 @@
 {% extends "base.html" %}
+
+{% block scripts %}
+<script src="http://neue.cc/linq.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+$(function(){
+	$.getJSON('/data', function(data){
+		en = Enumerable.From(data)
+		orgs = en.Distinct('$.organization').Count();
+		orgs_data = en.GroupBy('$.organization',"", "key, e=>key+':'+e.Count()");
+		console.log(orgs_data);	
+		reqs = en.Distinct('$.requester').Count();
+		$('#orgs_count').text(orgs);
+		$('#reqs_count').text(reqs);
+		
+		requests = en.Count();
+		
+	});
+});
+	
+</script>
+
+{% endblock %}
+
+{% block body %}
+<div class="row" id="requesters_dash">
+	<span id="orgs_count"></span>
+	<span id="reqs_count"></span>
+	<div id="orgs_plot"></div>
+</div>
+<div class="row" id="requests_dash"></div>
+<div class="row" id="response_dash"></div>
+<div class="row" id="time_dash"></div>
+
+{% endblock %}

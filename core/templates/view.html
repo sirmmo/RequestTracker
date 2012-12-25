@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="center" id="inner">
+	<a href="/requests/{{req.id}}/edit">edit</a>
+	<ul>
+		<li>A: <span class="val">{{req.question}}</span></li>
+	</ul>
+	
+    {% if req.response %}	
+    	<a href="/response/{{req.id}}/edit">edit</a>
+		<ul>
+			<li>{{req.response.response_date}}</li>
+		</ul>
+    {% else %}
+    	<a href="/response/{{request.id}}/add">ADD</a>
+    {% endif %}
+
+</div>
+{% endblock %}

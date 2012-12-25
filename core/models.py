@@ -49,8 +49,8 @@ class Response(models.Model):
 	response_date = models.DateField(blank=True, null=True)
 	satisfaction_level = models.ForeignKey(SatisfactionLevel)
 	dissatisfaction_reason = models.ManyToManyField(DissatisfactionType)
-	legal_pursue = models.BooleanField()
-	legal_support = models.BooleanField()
+	legal_pursue = models.BooleanField(help_text="Saresti disposto a fare denuncia al TAR per ottenere questi dati?")
+	legal_support = models.BooleanField(help_text="La tua redazione sarebbe disposta a supportare le spese legali per il ricorso?")
 
 	def __str__(self):
 		return "%s => %s" % (self.request, self.satisfaction)

@@ -16,6 +16,26 @@ header .title{
 	font-size:2em;
 	color:rgb(254,247,208);
 }
+
+footer{
+	width:100%;
+	background-color:rgb(177,42,47);
+	text-align:center;
+	position:fixed;
+	bottom:0px;
+}
+footer a{
+	color:rgb(254,247,208);
+	text-decoration:none;
+}
+
+footer .title{
+	padding:3px;
+	font-size:0.7em;
+	color:rgb(254,247,208);
+	text-align:center;
+	width:100%;
+}
 header a{
 	color:rgb(254,247,208);
 	text-decoration:none;
@@ -28,7 +48,9 @@ header a{
 	float:right;
 }
 nav{
-	width:100%;
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
 	height:25px;
 	background-color:rgb(254,247,208);
 }
@@ -37,28 +59,56 @@ nav .btn{
 	color:rgb(177,42,47);
 }
 #content{
-	width:100%;
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
 	display:block;
 }
 
 .centered{
-width:25%;
-margin-left:auto;
-margin-right:auto;
-display:inline-block;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+	display:inline-block;
 }
+
+.helptext{
+	display:block;
+	font-size:0.8em;
+	width:85%;
+	margin-left:auto;
+	margin-right:auto;
+}
+label{
+	width:25%;
+	display:inline-block;
+}
+:not('#login') input[type=text], :not('#login')  select{
+	width:25%;
+}
+
+#inner{
+	padding-top:10px;
+}
+
+.row{
+	width:100%;
+	padding-top:5px;
+	
+}
+
 </style>
 
-
+{% block scripts %}{% endblock %}
 </head>
 <body>
 <header>
 <div class="title left"><a href="/">ReqTrack</a></div>
 </header>
 <nav>
+{% if know_user %}
 <div class="btn left"><a href="/requests">Richieste inviate</a></div>
-{% if request.user.username %}
-<div class="btn right"><a href="/accounts/logout">Logout {{request.user.username}}</a></div>
+<div class="btn right"><a href="/accounts/logout">Logout {{username}}</a></div>
 {% else %}
 <div class="btn right"><a href="/accounts/login?next=/requests/">Login</a></div>
 {% endif %}
@@ -67,7 +117,8 @@ display:inline-block;
 {% block body %}{% endblock %}
 </div>
 <footer>
-
+<span class="title">
+RequestTracker - <a href="http://www.mmo.it">MMo.IT</a> for <a href="http://www.dirittodisapere.it/">DirittoDiSapere</a> &copy; 2012 - </span>
 </footer>
 </body>
 </html>
