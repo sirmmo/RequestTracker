@@ -11,7 +11,7 @@ import json
 from core.models import *
 
 def index (request):
-	if request.user:
+	if request.user.username:
 		return render_to_response('index.html', {'know_user':True, 'username':request.user.username})
 	else:
 		return render_to_response('index.html', {'know_user':False})		
