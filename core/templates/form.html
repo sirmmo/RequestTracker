@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block body %}
+		<h2>{% trans title%}</h2>
 		<form class="centered" action="" method="post">
 		{% csrf_token %}
 			{{ form.as_p }}

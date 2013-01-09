@@ -1,3 +1,4 @@
+{% load i18n %}
 <html>
 <head>
 <title>{% block title %}ReqTrack{% endblock %}</title>
@@ -57,6 +58,10 @@ nav{
 nav .btn{
 	padding:5px;
 	color:rgb(177,42,47);
+	font-size:small;
+}
+nav a{
+	color:rgb(177,42,47);
 }
 #content{
 	width:50%;
@@ -71,32 +76,64 @@ nav .btn{
 	margin-right:auto;
 	display:inline-block;
 }
+p{
+	display:block;
+	width:100%;
+	clear:both;
+	padding-top:5px;
+	padding-bottom:5px;
+}
 
 .helptext{
+	float:left;	
 	display:block;
-	font-size:0.8em;
-	width:85%;
+	font-size:0.6em;
+	width:25%;
 	margin-left:auto;
 	margin-right:auto;
 }
 label{
+	float:left;
 	width:25%;
 	display:inline-block;
 }
-:not('#login') input[type=text], :not('#login')  select{
-	width:25%;
+input[type=text], input[type=password], select, textarea{
+	float:right;
+	width:74%;
 }
 
 #inner{
 	padding-top:10px;
 }
 
-.row{
+table{
+	font-size:small;
 	width:100%;
-	padding-top:5px;
-	
 }
 
+ul{
+	width:100%;
+	display:block;
+
+}
+
+ul li{
+	display: block;
+	float: left;
+	width: 100%;
+	padding-top: 3px;
+	font-size: 0.8em;
+
+}
+
+ul li label{
+	width: 100%;
+}
+
+form .helptext{
+	display:none;
+}
+{% block style %}{% endblock %}
 </style>
 
 {% block scripts %}{% endblock %}
@@ -107,18 +144,22 @@ label{
 </header>
 <nav>
 {% if know_user %}
-<div class="btn left"><a href="/requests">Richieste inviate</a></div>
-<div class="btn right"><a href="/accounts/logout">Logout {{username}}</a></div>
+<div class="btn left"><a href="/requests">{% trans "Sent requests" %}</a></div>
+
+<div class="btn right"><a href="/accounts/logout">Logout</a></div>
+<div class="btn right"><a href="/users/{{username}}">{% trans "Profile" %}</a></div>
 {% else %}
 <div class="btn right"><a href="/accounts/login?next=/requests/">Login</a></div>
+<div class="btn right"><a href="/accounts/register/">{% trans "Register" %}</a></div>
 {% endif %}
 </nav>
 <div id="content">
 {% block body %}{% endblock %}
 </div>
 <footer>
-<span class="title">
-RequestTracker - <a href="http://www.mmo.it">MMo.IT</a> for <a href="http://www.dirittodisapere.it/">DirittoDiSapere</a> &copy; 2012 - </span>
+	<span class="title">	
+		<a href="https://github.com/sirmmo/RequestTracker">RequestTracker</a> - <a href="http://www.mmo.it">Marco Montanari</a> for <a href="http://www.dirittodisapere.it/">DirittoDiSapere</a> &copy; 2012
+	</span>
 </footer>
 </body>
 </html>

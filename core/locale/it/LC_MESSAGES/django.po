@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-01 13:32+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:8
+msgid "Name"
+msgstr "Nome"
+
+#: models.py:9
+msgid "Surname"
+msgstr "Cognome"
+
+#: models.py:10
+msgid "Organization"
+msgstr "Organizzazione"
+
+#: models.py:54
+msgid "Request"
+msgstr "Richiesta"
+
+#: models.py:54
+msgid ""
+"You can insert the text fo the request - it will not be exposed - or simply "
+"the specific topic of your request"
+msgstr ""
+"Oggetto o tema della richiesta (Puoi riportare esattamente il testo "
+"dell'oggetto della tua richiesta - rimarra' confidenziale. Oppure, se "
+"preferisci, indica solo il tema della richiesta)"
+
+#: models.py:55
+msgid "Submission Date"
+msgstr "Data di invio"
+
+#: models.py:56 templates/requests.html:9
+msgid "Topic"
+msgstr "Argomento"
+
+#: models.py:57
+msgid "Type"
+msgstr "Tipologia di PA"
+
+#: templates/base.html:147 templates/index.html:393
+#, fuzzy
+msgid "Sent requests"
+msgstr "Richieste inviate"
+
+#: templates/base.html:150
+msgid "Profile"
+msgstr "Profilo"
+
+#: templates/base.html:153
+msgid "Register"
+msgstr "Registrati"
+
+#: templates/index.html:397
+#, fuzzy
+msgid "Participating Organizations"
+msgstr "Organizzazioni coinvolte"
+
+#: templates/index.html:401
+msgid "Participating Journalists"
+msgstr "Giornalisti coinvolti"
+
+#: templates/index.html:405
+msgid "Responses received"
+msgstr "Risposte ricevute"
+
+#: templates/index.html:409
+msgid "Average days for response"
+msgstr "Tempo medio di risposta (la legge prevede un massimo di 30 giorni)"
+
+#: templates/requests.html:4
+msgid "Requests"
+msgstr "Richieste"
+
+#: templates/requests.html:5
+msgid "New Request"
+msgstr "Nuova Richiesta"
+
+#: templates/requests.html:10
+msgid "Level"
+msgstr "Tipologia di PA"
+
+#: templates/requests.html:11
+msgid "Request Date"
+msgstr "Data di invio"
+
+#: templates/requests.html:12
+msgid "Has Response"
+msgstr "Ha ottenuto risposta"
+
+#: templates/requests.html:23 templates/view.html:24
+msgid "ADD"
+msgstr "AGGIUNGI"
+
+#: templates/view.html:5 templates/view.html.py:14
+msgid "Edit"
+msgstr "Modifica"
+
+#: templates/registration/logout.html:6
+msgid "Goodbye!"
+msgstr "Arrivederci!"
+
+#: templates/registration/registration_complete.html:6
+msgid "Thank you for registering. The system is now available."
+msgstr "Grazie per esserti registrato, il sistema e' ora a disposizione"

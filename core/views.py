@@ -30,6 +30,11 @@ class ResponseForm(ModelForm):
             'dissatisfaction_reason': CheckboxSelectMultiple(),
         }
 
+class ProfileForm(ModelForm):
+	class Meta:
+		model = Requester
+		exclude = ('user')
+
 @login_required
 def req_list(request):
 	request_list = Request.objects.filter(requester__user = request.user).all()
@@ -70,7 +75,15 @@ def res_edit(request, id):
 			res.save()
 			return HttpResponseRedirect('/requests') # Redirect after POST
 	else:
-		form = ResponseForm() # An unbound form
+		if id is None:
+			form = ResponseForm() # An unbound form
+		else:
+			try:
+				i = Response.objects.get(request__id=id)
+				form = ResponseForm(instance = i) # An unbound form
+			except:
+				form = ResponseForm()
+
 		
 	c = RequestContext(request, {
     	'form': form,
@@ -98,6 +111,35 @@ def req_delete(request, id):
 def req_add_response(request, id):
 	request_list = Request.objects.filter(requester__user = request.user).all()
 	return render_to_response("form.html", {'requests':request_list, 'know_user':True, 'username':request.user.username})
+
+@login_required
+def prof_edit(request, username):
+	if request.method == 'POST': # If the form has been submitted...
+		form = ProfileForm(request.POST) # A form bound to the POST data
+		if form.is_valid(): # All validation rules pass
+			res = form.save(commit=False)
+			if Requester.objects.filter(user = request.user).count() > 0:
+				res.id = Requester.objects.get(user = request.user).id
+			res.user = request.user
+			res.save()
+			return HttpResponseRedirect('/requests') # Redirect after POST
+	else:
+		if username is None:
+			form = ProfileForm() # An unbound form
+		else:
+			try:
+				i = Requester.objects.get(user = request.user)
+				form = ProfileForm(instance = i) # An unbound form
+			except:
+				form = ProfileForm()
+
+		
+	c = RequestContext(request, {
+    	'form': form,
+    	'know_user':True, 
+    	'username':request.user.username
+	})
+	return render_to_response('form.html',c)
 	
 
 def req_stats(request):

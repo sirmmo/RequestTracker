@@ -1,18 +1,27 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block body %}
 <div class="center" id="inner">
-	<a href="/requests/{{req.id}}/edit">edit</a>
-	<ul>
-		<li>A: <span class="val">{{req.question}}</span></li>
-	</ul>
-	
-    {% if req.response %}	
-    	<a href="/response/{{req.id}}/edit">edit</a>
+	<a href="/requests/{{req.id}}/edit">{% trans "Edit" %}</a>
 		<ul>
-			<li>{{req.response.response_date}}</li>
+	{% for name, value in req.get_fields %}
+  	{% if value %}
+    	<li><span>{% trans name %}</span><span>: </span> <span>{{ value }}</span>
+  	{% endif %}
+	{% endfor %}	
+		</ul>
+    {% if req.response %}	
+    	<a href="/response/{{req.id}}/edit">{% trans "Edit" %}</a>
+
+		<ul>
+	{% for name, value in req.response.get_fields %}
+  	{% if value %}
+    	<li><span>{% trans name %}</span><span>: </span> <span>{{ value }}</span>
+  	{% endif %}
+	{% endfor %}	
 		</ul>
     {% else %}
-    	<a href="/response/{{request.id}}/add">ADD</a>
+    	<a href="/response/{{req.id}}/add">{% trans "ADD" %}</a>
     {% endif %}
 
 </div>
