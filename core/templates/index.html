@@ -4,6 +4,18 @@
 {% block style %}
 @import url(http://fonts.googleapis.com/css?family=Convergence);
 
+.srow{
+	font-family:'Convergence', sans-serif;
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+clear:both;
+	
+
+
+}
+
 .row{
 	font-family:'Convergence', sans-serif;
 	width:100%;
@@ -41,11 +53,11 @@
 	font-size:small;
 }
 
-.row .rleft{
+.rleft{
 	float:left;
 	text-align:right;
 }
-.row .rright{	
+.rright{	
 	float:right;
 	text-align:left;
 }
@@ -53,6 +65,23 @@
 .large{
 	font-size:4em;
 }
+.ipart{
+	width:45%;
+
+	display:block;
+	background-color:rgb(254,247,208);
+	padding-right:5px;
+	padding-left:5px;
+	font-size:2em;
+}
+
+.ipart a{
+
+	width:100%;
+	display:block;
+	text-align:center;
+	color:rgb(177,42,47);
+	text-decoration:none;}
 
 {% endblock %}
 
@@ -372,8 +401,10 @@ $(function(){
 		$('#orgs_count').text(en.Distinct('$.organization').Count());
 		$('#reqs_count').text(en.Distinct('$.user').Count());
 		$('#resp_count').text(en.Where('$.has_response==true').Count());
-		$('#time_gauge').text(en.Average("$.timespan.days"));
+		
 		avg = en.Average("$.timespan.days");
+		avg = Math.ceil(avg);
+		$('#time_gauge').text(avg);
 		if (avg > 30 && avg <= 60)
 			$('#time_gauge').addClass('warning');
 		else if (avg > 60)
@@ -388,6 +419,8 @@ $(function(){
 {% endblock %}
 
 {% block body %}
+
+{% if know_user %}
 <div class="row" id="total">
 	<span class="rleft content large" id="total_count"></span>
 	<span class="rright description">{% trans "Sent requests" %}</span>
@@ -408,8 +441,20 @@ $(function(){
 	<span class="rleft  content large" id="time_gauge"></span >
 	<span class="rright description">{% trans "Average days for response" %}</span>
 </div>
+{% else %}
 
-<div class="row" id="requests_dash"></div>
+<div class="row">
+<center><img src="http://www.dirittodisapere.it/wp-content/uploads/2012/09/cropped-10x10_dirittodisapere5.jpg"></center>
+</div>
+<div class="srow">
+<div class="rleft ipart"><a href="/accounts/register/">{% trans "Register" %}</a></div>
+<div class="rright ipart"><a href="/accounts/login?next=/requests/">Login</a></div>
+
+
+</div>
+
+
+{% endif %}
 
 
 {% endblock %}

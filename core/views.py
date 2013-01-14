@@ -7,6 +7,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.template import RequestContext
 from django.forms import CheckboxSelectMultiple
+from django.forms import RadioSelect
+from django.forms import NullBooleanSelect
 import json
 from core.models import *
 
@@ -27,7 +29,12 @@ class ResponseForm(ModelForm):
 		model = Response
 		exclude = ("request")
 		widgets = {
-            'dissatisfaction_reason': CheckboxSelectMultiple(),
+			'dissatisfaction_reason': CheckboxSelectMultiple(),
+			'satisfaction_level': RadioSelect(),
+			'legal_support': NullBooleanSelect(),
+			'legal_pursue': NullBooleanSelect(),
+			'legal_ack': NullBooleanSelect(),
+			'legal_ent': NullBooleanSelect(),
         }
 
 class ProfileForm(ModelForm):
@@ -60,7 +67,8 @@ def req_edit(request, id=None):
 	c = RequestContext(request, {
     	'form': form,
     	'know_user':True, 
-    	'username':request.user.username
+    	'username':request.user.username,
+	'dates':['submission_date']
 	})
 	return render_to_response('form.html',c)
 	
@@ -88,7 +96,9 @@ def res_edit(request, id):
 	c = RequestContext(request, {
     	'form': form,
     	'know_user':True, 
-    	'username':request.user.username
+    	'username':request.user.username,
+	'dates':['response_date']
+
 	})
 	return render_to_response('form.html',c)
 	

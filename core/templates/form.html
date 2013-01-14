@@ -1,5 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
+
+
+{% block scripts %}
+
+<style>
+@import "http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css";
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+<script>
+$(function(){
+	{% for id in dates %}
+	$('#id_{{id}}').datepicker({dateFormat:'dd/mm/yy'});
+	{% endfor %}
+});
+</script>
+{% endblock %}
+
 {% block body %}
 		<h2>{% trans title%}</h2>
 		<form class="centered" action="" method="post">

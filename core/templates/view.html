@@ -5,8 +5,9 @@
 	<a href="/requests/{{req.id}}/edit">{% trans "Edit" %}</a>
 		<ul>
 	{% for name, value in req.get_fields %}
+
   	{% if value %}
-    	<li><span>{% trans name %}</span><span>: </span> <span>{{ value }}</span>
+    	<li><span><b>{% trans name %}</b></span><span>: </span> <span>{% trans value %}</span>
   	{% endif %}
 	{% endfor %}	
 		</ul>
@@ -16,7 +17,7 @@
 		<ul>
 	{% for name, value in req.response.get_fields %}
   	{% if value %}
-    	<li><span>{% trans name %}</span><span>: </span> <span>{{ value }}</span>
+    	<li><span><b>{% trans name %}</b></span><span>: </span> <span>{% trans value %}</span>
   	{% endif %}
 	{% endfor %}	
 		</ul>

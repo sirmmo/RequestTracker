@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-01 13:32+0100\n"
+"POT-Creation-Date: 2013-01-14 00:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,54 @@ msgstr "Argomento"
 msgid "Type"
 msgstr "Tipologia di PA"
 
-#: templates/base.html:147 templates/index.html:393
+#: models.py:72
+#, fuzzy
+msgid "Response Date"
+msgstr "Data della risposta"
+
+#: models.py:73
+msgid "Come consideri la qualita' della risposta?"
+msgstr ""
+
+#: models.py:75
+msgid "L'informazione che hai chiesto non ti e' stata data? Perche'?"
+msgstr ""
+
+#: models.py:76
+msgid ""
+"In caso di risposta negativa da parte della PA vorresti fare ricorso per "
+"ottenere l'accesso alle informazioni che hai richiesto?"
+msgstr ""
+
+#: models.py:77
+msgid "Hai avuto supporto legale per fare questa richiesta?"
+msgstr ""
+
+#: models.py:79
+msgid ""
+"Hai ricevuto dal destinatario della richiesta una segnalazione dell'avvenuta "
+"richiesta e ricezione della stessa?"
+msgstr ""
+
+#: models.py:80
+msgid "La richiesta e' stata trasferita ad altra ufficio/ente?"
+msgstr ""
+
+#: models.py:81
+msgid "Il trasferimento ti e' stato segnalato?"
+msgstr ""
+
+#: models.py:82
+msgid "In seguito al trasferimento devi rifare la richiesta?"
+msgstr ""
+
+#: models.py:83
+msgid ""
+"Hai ricevuto una richiesta di pagamento superiore ai costi di copia e "
+"spedizione?"
+msgstr ""
+
+#: templates/base.html:147 templates/index.html:426
 #, fuzzy
 msgid "Sent requests"
 msgstr "Richieste inviate"
@@ -64,24 +111,24 @@ msgstr "Richieste inviate"
 msgid "Profile"
 msgstr "Profilo"
 
-#: templates/base.html:153
+#: templates/base.html:153 templates/index.html:450
 msgid "Register"
 msgstr "Registrati"
 
-#: templates/index.html:397
+#: templates/index.html:430
 #, fuzzy
 msgid "Participating Organizations"
 msgstr "Organizzazioni coinvolte"
 
-#: templates/index.html:401
+#: templates/index.html:434
 msgid "Participating Journalists"
 msgstr "Giornalisti coinvolti"
 
-#: templates/index.html:405
+#: templates/index.html:438
 msgid "Responses received"
 msgstr "Risposte ricevute"
 
-#: templates/index.html:409
+#: templates/index.html:442
 msgid "Average days for response"
 msgstr "Tempo medio di risposta (la legge prevede un massimo di 30 giorni)"
 
@@ -105,11 +152,11 @@ msgstr "Data di invio"
 msgid "Has Response"
 msgstr "Ha ottenuto risposta"
 
-#: templates/requests.html:23 templates/view.html:24
+#: templates/requests.html:23 templates/view.html:25
 msgid "ADD"
 msgstr "AGGIUNGI"
 
-#: templates/view.html:5 templates/view.html.py:14
+#: templates/view.html:5 templates/view.html.py:15
 msgid "Edit"
 msgstr "Modifica"
 
@@ -120,3 +167,9 @@ msgstr "Arrivederci!"
 #: templates/registration/registration_complete.html:6
 msgid "Thank you for registering. The system is now available."
 msgstr "Grazie per esserti registrato, il sistema e' ora a disposizione"
+
+msgid "True"
+msgstr "Si"
+
+msgid "False"
+msgstr "No"
