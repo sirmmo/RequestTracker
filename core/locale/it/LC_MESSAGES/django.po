@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-14 00:21+0100\n"
+"POT-Creation-Date: 2013-01-16 01:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,19 @@ msgstr "Cognome"
 msgid "Organization"
 msgstr "Organizzazione"
 
-#: models.py:54
+#: models.py:12
+msgid "Security Question"
+msgstr "Domanda di sicurezza"
+
+#: models.py:13
+msgid "Security Answer"
+msgstr "Risposta di sicurezza"
+
+#: models.py:57 views.py:185 views.py:190
 msgid "Request"
 msgstr "Richiesta"
 
-#: models.py:54
+#: models.py:57
 msgid ""
 "You can insert the text fo the request - it will not be exposed - or simply "
 "the specific topic of your request"
@@ -43,66 +51,84 @@ msgstr ""
 "dell'oggetto della tua richiesta - rimarra' confidenziale. Oppure, se "
 "preferisci, indica solo il tema della richiesta)"
 
-#: models.py:55
+#: models.py:58
 msgid "Submission Date"
 msgstr "Data di invio"
 
-#: models.py:56 templates/requests.html:9
+#: models.py:59 templates/requests.html:9
 msgid "Topic"
 msgstr "Argomento"
 
-#: models.py:57
+#: models.py:60
 msgid "Type"
 msgstr "Tipologia di PA"
 
-#: models.py:72
+#: models.py:75
 #, fuzzy
 msgid "Response Date"
 msgstr "Data della risposta"
 
-#: models.py:73
+#: models.py:76
 msgid "Come consideri la qualita' della risposta?"
 msgstr ""
 
-#: models.py:75
-msgid "L'informazione che hai chiesto non ti e' stata data? Perche'?"
+#: models.py:78
+msgid "L'informazione che hai chiesto non ti e' stata data. Perche'?"
 msgstr ""
 
-#: models.py:76
+#: models.py:79
 msgid ""
 "In caso di risposta negativa da parte della PA vorresti fare ricorso per "
 "ottenere l'accesso alle informazioni che hai richiesto?"
 msgstr ""
 
-#: models.py:77
+#: models.py:80
 msgid "Hai avuto supporto legale per fare questa richiesta?"
 msgstr ""
 
-#: models.py:79
+#: models.py:82
 msgid ""
 "Hai ricevuto dal destinatario della richiesta una segnalazione dell'avvenuta "
 "richiesta e ricezione della stessa?"
 msgstr ""
 
-#: models.py:80
+#: models.py:83
 msgid "La richiesta e' stata trasferita ad altra ufficio/ente?"
 msgstr ""
 
-#: models.py:81
+#: models.py:84
 msgid "Il trasferimento ti e' stato segnalato?"
 msgstr ""
 
-#: models.py:82
-msgid "In seguito al trasferimento devi rifare la richiesta?"
+#: models.py:85
+msgid "In seguito al trasferimento hai dovuto rifare la richiesta?"
 msgstr ""
 
-#: models.py:83
+#: models.py:86
 msgid ""
 "Hai ricevuto una richiesta di pagamento superiore ai costi di copia e "
 "spedizione?"
 msgstr ""
 
-#: templates/base.html:147 templates/index.html:426
+#: views.py:181 views.py:184 views.py:189
+#, fuzzy
+msgid "Username"
+msgstr "Cognome"
+
+#: views.py:186 views.py:191
+#, fuzzy
+msgid "Response"
+msgstr "Ha ottenuto risposta"
+
+#: views.py:192
+msgid "New Password"
+msgstr "Nuova Password"
+
+#: views.py:193
+msgid "Repeat New Password"
+msgstr "Ripeti nuova Password"
+
+#: templates/base.html:148 templates/index.html:426
 #, fuzzy
 msgid "Sent requests"
 msgstr "Richieste inviate"
@@ -111,7 +137,7 @@ msgstr "Richieste inviate"
 msgid "Profile"
 msgstr "Profilo"
 
-#: templates/base.html:153 templates/index.html:450
+#: templates/base.html:157 templates/index.html:450
 msgid "Register"
 msgstr "Registrati"
 
@@ -168,8 +194,8 @@ msgstr "Arrivederci!"
 msgid "Thank you for registering. The system is now available."
 msgstr "Grazie per esserti registrato, il sistema e' ora a disposizione"
 
-msgid "True"
-msgstr "Si"
+#~ msgid "True"
+#~ msgstr "Si"
 
-msgid "False"
-msgstr "No"
+#~ msgid "False"
+#~ msgstr "No"

@@ -17,9 +17,10 @@ urlpatterns = patterns('',
     url(r'^requests/([\d-]+)/delete$', 'core.views.req_delete'),
     url(r'^response/([\d-]+)/$', 'core.views.res_info'),
     url(r'^response/([\d-]+)/add$', 'core.views.res_edit'),
-    url(r'^responses/([\d-]+)/edit$', 'core.views.res_edit'),
+    url(r'^response/([\d-]+)/edit$', 'core.views.res_edit'),
 #/accounts/login/
-    url(r'^accounts/login','django.contrib.auth.views.login'),
-    url(r'^accounts/logout','django.contrib.auth.views.logout', {'next_page':'/'}),
-
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^users/(\w+)', 'core.views.prof_edit'),
+    url(r'^lost_pw', 'core.views.lost_pw'),
+    url(r'^data.csv', 'core.views.req_csv'),
 )

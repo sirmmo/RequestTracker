@@ -143,14 +143,18 @@ form .helptext{
 <div class="title left"><a href="/">ReqTrack</a></div>
 </header>
 <nav>
+
 {% if know_user %}
 <div class="btn left"><a href="/requests">{% trans "Sent requests" %}</a></div>
-
 <div class="btn right"><a href="/accounts/logout">Logout</a></div>
 <div class="btn right"><a href="/users/{{username}}">{% trans "Profile" %}</a></div>
-{% else %}
-<div class="btn right"><a href="/accounts/login?next=/requests/">Login</a></div>
-<div class="btn right"><a href="/accounts/register/">{% trans "Register" %}</a></div>
+{% if superuser%}
+<div class="btn right"><a href="/admin">Admin</a></div>
+<div class="btn right"><a href="/data.csv">Export CSV</a></div>
+{% endif %}
+{% else%}
+<!--<div class="btn right"><a href="/accounts/login?next=/requests/">Login</a></div>
+<div class="btn right"><a href="/accounts/register/">{% trans "Register" %}</a></div>-->
 {% endif %}
 </nav>
 <div id="content">

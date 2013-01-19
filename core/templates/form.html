@@ -22,8 +22,12 @@ $(function(){
 {% block body %}
 		<h2>{% trans title%}</h2>
 		<form class="centered" action="" method="post">
+
 		{% csrf_token %}
 			{{ form.as_p }}
-			<input type="submit" value="Submit" />
+
+<p>
+			<input style="clear:both;" type="submit" value="Submit" />
+</p>
 		</form>
 		{% endblock %}

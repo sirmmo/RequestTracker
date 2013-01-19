@@ -13,12 +13,12 @@
     	</tr>
 	{% for request in requests %}
 	<tr>
-		<td><a href="/requests/{{request.id}}"> {{ request.id }}</a></td>
+		<td><a href="/requests/{{request.id}}"> {{ request.code }}</a></td>
 		<td>{{request.topic}}</td>
 		<td>{{request.level}}</td>
 		<td>{{request.submission_date}}</td>
 		{% if request.response %}
-		<td><a href="/response/{{request.id}}">{{request.response.response_date}}</a></td>
+		<td>{{request.response.response_date}}</td>
 		{% else %}
 		<td><a href="/response/{{request.id}}/add">{% trans "ADD" %}</a></td>
 		{% endif %}
