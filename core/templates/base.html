@@ -148,10 +148,12 @@ form .helptext{
 <div class="btn left"><a href="/requests">{% trans "Sent requests" %}</a></div>
 <div class="btn right"><a href="/accounts/logout">Logout</a></div>
 <div class="btn right"><a href="/users/{{username}}">{% trans "Profile" %}</a></div>
+<div class="btn right"><a href="/data.csv">Export CSV</a></div>
 {% if superuser%}
 <div class="btn right"><a href="/admin">Admin</a></div>
-<div class="btn right"><a href="/data.csv">Export CSV</a></div>
 {% endif %}
+
+
 {% else%}
 <!--<div class="btn right"><a href="/accounts/login?next=/requests/">Login</a></div>
 <div class="btn right"><a href="/accounts/register/">{% trans "Register" %}</a></div>-->

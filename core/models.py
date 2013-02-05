@@ -2,6 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.encoding import smart_str
 
 class Requester(models.Model):
 	user = models.OneToOneField(User)
@@ -13,7 +14,7 @@ class Requester(models.Model):
 	security_answer = models.CharField(max_length=500, verbose_name=_("Security Answer"))
 	
 	def __str__(self):
-		return "%s %s (%s)" % (self.name, self.surname, self.organization, )
+		return smart_str("%s %s (%s)" % (self.name, self.surname, self.organization, ))
 	def get_fields(self):
 		return [(field.verbose_name, field.value_to_string(self)) for field in Requester._meta.fields]
 
@@ -21,7 +22,7 @@ class SatisfactionLevel(models.Model):
 	level = models.TextField()
 	
 	def __str__(self):
-		return str(self.level)
+		return smart_str(self.level)
 	def get_fields(self):
 		return [(field.verbose_name, field.value_to_string(self)) for field in SatisfactionLevel._meta.fields]
 
@@ -29,7 +30,7 @@ class DissatisfactionType(models.Model):
 	name = models.TextField()
 	
 	def __str__(self):
-		return self.name
+		return smart_str(self.name)
 	def get_fields(self):
 		return [(field.verbose_name, field.value_to_string(self)) for field in DissatisfactionType._meta.fields]
 
@@ -38,16 +39,25 @@ class Topic(models.Model):
 	name = models.TextField()
 	
 	def __str__(self):
-		return self.name
+		return smart_str(self.name)
 	def get_fields(self):
 		return [(field.verbose_name, field.value_to_string(self)) for field in Topic._meta.fields]
+
+
+class Area(models.Model):
+	name = models.TextField()
+	
+	def __str__(self):
+		return smart_str(self.name)
+	def get_fields(self):
+		return [(field.verbose_name, field.value_to_string(self)) for field in Area._meta.fields]
 
 
 class Level(models.Model):
 	name = models.TextField()
 	
 	def __str__(self):
-		return self.name
+		return smart_str(self.name)
 	def get_fields(self):
 		return [(field.verbose_name, str(self.__getattribute__(field.name))) for field in Level._meta.fields]
 
@@ -65,11 +75,13 @@ class Request(models.Model):
 	requester = models.ForeignKey(Requester)
 	question = models.TextField(verbose_name=_('Request'), help_text=_("You can insert the text fo the request - it will not be exposed - or simply the specific topic of your request"))
 	submission_date = models.DateField(verbose_name=_('Submission Date'))
-	topic = models.ForeignKey(Topic, verbose_name=_('Topic'))
+	#yes, this sucks, but it works "in progress".
+	topic = models.ForeignKey(Area, verbose_name=_('Topic'))
+	area = models.ForeignKey(Topic, verbose_name=_('Area'))
 	level = models.ForeignKey(Level, verbose_name=_('Type'))
 	
 	def __str__(self):
-		return "%s - %s" % (self.requester, self.topic)
+		return smart_str("%s - %s" % (self.requester, self.topic))
 	def get_fields(self):
 		rl = []
 		for field in Request._meta.fields:
@@ -101,7 +113,7 @@ class Response(models.Model):
 	legal_cost = models.NullBooleanField(verbose_name=_("Hai ricevuto una richiesta di pagamento superiore ai costi di copia e spedizione?"),blank=True, null=True)
 
 	def __str__(self):
-		return "%s - %s" % (self.requester, self.topic)
+		return smart_str("%s - %s" % (self.request, self.response_date ))
 	def get_fields(self):
 		rl = []
 		for field in Request._meta.fields:
