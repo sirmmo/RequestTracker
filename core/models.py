@@ -84,10 +84,10 @@ class Request(models.Model):
 		return smart_str("%s - %s" % (self.requester, self.topic))
 	def get_fields(self):
 		rl = []
-		for field in Request._meta.fields:
+		'''for field in Request._meta.fields:
 			if field.name not in ['id', 'request', 'requester']:
-				rl.append((field.verbose_name, str(self.__getattribute__(field.name))))
-		return [(field.verbose_name, str(self.__getattribute__(field.name))) for field in Request._meta.fields if field.name not in ['id', 'request', 'requester']]
+				rl.append((field.verbose_name, smart_str(self.__getattribute__(field.name))))'''
+		return [(field.verbose_name, unicode(self.__getattribute__(field.name))) for field in Request._meta.fields if field.name not in ['id', 'request', 'requester']]
 	def save(self, *args, **kwargs):
 		if self.code is  None:
 			self.code = get_consonants(self.requester.name.lower())[:2].upper() + get_consonants(self.requester.surname.lower())[:2].upper() + self.submission_date.strftime('%d%m')+ "-"+str(Request.objects.filter(requester = self.requester, submission_date__day = self.submission_date.day).count()+1)
@@ -116,9 +116,9 @@ class Response(models.Model):
 		return smart_str("%s - %s" % (self.request, self.response_date ))
 	def get_fields(self):
 		rl = []
-		for field in Request._meta.fields:
+		for field in Response._meta.fields:
 			if field.name not in ['id', 'request', 'requester']:
 				rl.append((field.verbose_name, str(self.__getattribute__(field.name))))
-		return [(field.verbose_name, str(self.__getattribute__(field.name))) for field in Request._meta.fields if field.name not in ['id', 'request', 'requester']]
+		return [(field.verbose_name, _(str(self.__getattribute__(field.name)))) for field in Response._meta.fields if field.name not in ['id', 'request', 'requester']]
 
 

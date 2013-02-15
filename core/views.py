@@ -237,7 +237,26 @@ def do_req_csv(user):
 		pass
 	else:
 		req_s = req_s.filter(requester__user = user)
-	arr = ['user', 'code', 'organization','submission_date','topic','level','area', 'has_response','satisfaction_level','response_date','dissatisfacion_reason','legal_pursue','legal_support', 'ack' ]
+	arr = [
+		'user',  
+		'organization', 
+		'code',
+		'submission_date', 
+		'topic',
+		'level',
+		'area', 
+		'has_response',
+		'response_date',
+		'satisfaction_level',
+		'dissatisfacion_reason',
+		'ack',
+		'transferred',
+		'transferred_ack',
+		'transferred_rereq',
+		'payment',
+		'legal_pursue',
+		'legal_support', 
+		 ]
 	response = HttpResponse(mimetype="text/csv")
 	writer = csv.writer(response)
 	writer.writerow(arr)
@@ -253,13 +272,18 @@ def do_req_csv(user):
 		try:
 			t = req.response
 			req_['has_response'] = True
+			req_['response_date'] = smart_str(req.response.response_date)
 			req_['satisfaction_level']= smart_str(req.response.satisfaction_level)
 			req_['legal_support']= smart_str(req.response.legal_support)
 			req_['ack']= smart_str(req.response.legal_ack)
-			req_['response_date'] = smart_str(req.response.response_date)
+			req_['transferred']= smart_str(req.response.legal_ent)
+			req_['transferred_ack']= smart_str(req.response.legal_sig)
+			req_['transferred_rereq']= smart_str(req.response.legal_tra)
+			req_['payment']= smart_str(req.response.legal_cost)
 			req_['dissatisfaction_reason'] = smart_str([dr for dr in req.response.dissatisfaction_reason.all()])
-			rea_['legal_pursue'] = smart_str(req.response.legal_pursue)
-		except:
+			req_['legal_pursue'] = smart_str(req.response.legal_pursue)
+		except Exception as e:
+			print e
 			req_['has_response'] = False
 		ta = []
 		for a in arr:
